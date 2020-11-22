@@ -71,12 +71,16 @@ const Role = styled(ProfileText)`
 `;
 
 const SubtitlesContainer = styled.div`
-     position: absolute;
-    bottom: 30px;
+    position: absolute;
+    bottom: 8%;
     left: 0;
     width: 100%;
     padding: 0 5%;
     box-sizing: border-box;
+    
+    @media (max-width: 900px) {
+        bottom: 15%;
+    }
 `;
 
 const LinksContainer = styled.div`

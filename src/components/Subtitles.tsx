@@ -34,7 +34,7 @@ function Subtitles({showAdditionalInfo}: {showAdditionalInfo: () => void}) {
         {text: "Oh, sorry! I'm talking too much…", duration: 5000, onStart: noop},
         {text: "Now it's your turn. Do you have something to share with me?", duration: 7000, onStart: noop},
         {text: "I'm all ears (on my linkedin).", duration: 7000, onStart: noop},
-        {text: "While you think, enjoy the trip. What a nice view we have here, right?", duration: 7000, onStart: noop},
+        {text: "While you think, enjoy the trip. What a nice view we have here, huh?", duration: 7000, onStart: noop},
     ]);
     const [currentSubtitleIndex, setSubtitleIndex] = React.useState(0);
 

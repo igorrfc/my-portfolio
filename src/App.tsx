@@ -102,7 +102,7 @@ function App() {
                 </LinksContainer>) : null}
             </ProfileInfo>
             <VideoContainer className="mac">
-                <Video autoPlay muted loop src={trip} />
+                <Video autoPlay playsInline muted loop src={trip} />
             </VideoContainer>
             <SubtitlesContainer>
                 <Subtitles showAdditionalInfo={showAdditionalInfo} />

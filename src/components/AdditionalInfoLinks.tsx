@@ -54,6 +54,10 @@ const Link = styled.a<{name: string, delay: number}>`
     
     @media (max-width: 900px) {
         margin: 0 3px;
+        
+        &:hover:after {
+            content: "";
+        }
     }
 `;
 

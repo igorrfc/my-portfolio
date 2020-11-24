@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/my-portfolio/static/css/main.56b14abb.chunk.css",
-    "main.js": "/my-portfolio/static/js/main.7e2e02bb.chunk.js",
-    "main.js.map": "/my-portfolio/static/js/main.7e2e02bb.chunk.js.map",
+    "main.js": "/my-portfolio/static/js/main.d9f5adec.chunk.js",
+    "main.js.map": "/my-portfolio/static/js/main.d9f5adec.chunk.js.map",
     "runtime-main.js": "/my-portfolio/static/js/runtime-main.ffc8d358.js",
     "runtime-main.js.map": "/my-portfolio/static/js/runtime-main.ffc8d358.js.map",
     "static/js/2.9ae87fc4.chunk.js": "/my-portfolio/static/js/2.9ae87fc4.chunk.js",
@@ -12,12 +12,12 @@
     "index.html": "/my-portfolio/index.html",
     "static/css/main.56b14abb.chunk.css.map": "/my-portfolio/static/css/main.56b14abb.chunk.css.map",
     "static/js/2.9ae87fc4.chunk.js.LICENSE.txt": "/my-portfolio/static/js/2.9ae87fc4.chunk.js.LICENSE.txt",
-    "static/media/trip.eab7996b.mp4": "/my-portfolio/static/media/trip.eab7996b.mp4"
+    "static/media/trip.bbceb1e9.mp4": "/my-portfolio/static/media/trip.bbceb1e9.mp4"
   },
   "entrypoints": [
     "static/js/runtime-main.ffc8d358.js",
     "static/js/2.9ae87fc4.chunk.js",
     "static/css/main.56b14abb.chunk.css",
-    "static/js/main.7e2e02bb.chunk.js"
+    "static/js/main.d9f5adec.chunk.js"
   ]
 }

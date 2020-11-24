@@ -1,10 +1,35 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 // @ts-ignore
 import trip from './assets/trip.mp4';
 import Subtitles from './components/Subtitles';
 import AdditionalInfoLinks from "./components/AdditionalInfoLinks";
+
+const dotsAnimation = keyframes`
+    0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);
+  }
+  40% {
+    color: #1eef18;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);
+  }
+  60% {
+    text-shadow:
+      .25em 0 0 #1eef18,
+      .5em 0 0 rgba(0,0,0,0);
+  }
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 #1eef18,
+      .5em 0 0 #1eef18;}
+  }
+`;
 
 const VideoContainer = styled.div`
     background-color: black;
@@ -19,10 +44,12 @@ const VideoContainer = styled.div`
     }
 `;
 
-const Video = styled.video`
+const Video = styled.video<{hidden: boolean}>`
     width: 600px;
     margin-top: 48px;
     height: 600px;
+    
+    ${({hidden}) => hidden ? "visibility: hidden" : "" }
     
     @media (max-width: 900px) {
         width: 300px;
@@ -42,7 +69,7 @@ const Container = styled.div`
 `;
 
 const ProfileInfo = styled.div`
-    position: absolute;
+   position: absolute;
    top: 20px;
    left: 20px;
    letter-spacing: 1.5px;
@@ -87,8 +114,51 @@ const LinksContainer = styled.div`
     margin: 6% 0;
 `;
 
+const TerminalFont = styled.p`
+    color: #1eef18;
+  margin: 0;
+`;
+
+const TerminalDotsAnimation = styled(TerminalFont)`
+  font-size: 30px;
+  
+  &:after {
+      content: ' .';
+      animation: ${dotsAnimation} 1s steps(5, end) infinite;
+  }
+`;
+
+const TerminalArrow = styled(TerminalFont)`
+    color: #1eef18;
+    font-size: 20px;
+    margin-right: 5px;
+`;
+
+const LoadingWrapper = styled.div`
+    margin-top: 40px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+`;
+
+function LoadingTerminalAnimation() {
+    return (
+        <LoadingWrapper><TerminalArrow>➜</TerminalArrow><TerminalDotsAnimation /></LoadingWrapper>
+    )
+};
+
 function App() {
+    const videoRef = React.useRef(null);
+    const [isLoadingVideo, toggleVideoLoading] = React.useState(true);
     const [isAdditionalInfoVisible, toggleAdditionalInfoVisibility] = React.useState(false);
+
+    const finishLoadingVideo = React.useCallback(() => {
+        toggleVideoLoading(false);
+
+        (document.getElementById('trip-video') as HTMLVideoElement).play();
+    }, []);
 
     const showAdditionalInfo = React.useCallback(() => {
         setTimeout(() => {
@@ -106,11 +176,14 @@ function App() {
                 </LinksContainer>) : null}
             </ProfileInfo>
             <VideoContainer className="mac">
-                <Video autoPlay playsInline muted loop src={trip} />
+                {isLoadingVideo ? <LoadingTerminalAnimation /> : null}
+                <Video id="trip-video" ref={videoRef} autoPlay playsInline muted loop onLoadedData={finishLoadingVideo} hidden={isLoadingVideo} preload="auto">
+                    <source src={trip} type="video/mp4" />
+                </Video>
             </VideoContainer>
-            <SubtitlesContainer>
+            {isLoadingVideo ? null : (<SubtitlesContainer>
                 <Subtitles showAdditionalInfo={showAdditionalInfo} />
-            </SubtitlesContainer>
+            </SubtitlesContainer>)}
         </Container>
     );
 }
